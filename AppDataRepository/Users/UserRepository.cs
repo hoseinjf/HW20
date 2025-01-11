@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainService.HW20.User
+namespace AppDataRepository.Users
 {
-    public class UserService
+    public class UserRepository
     {
     }
 }

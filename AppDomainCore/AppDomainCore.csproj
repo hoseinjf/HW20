@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="HW20\Cars\Enum\" />
+    <Folder Include="Cars\Enum\" />
   </ItemGroup>
 
 </Project>

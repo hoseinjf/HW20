@@ -1,12 +1,12 @@
-﻿using AppDomainCore.HW20.Cars.Entity;
-using AppDomainCore.HW20.Users.Enum;
+﻿using AppDomainCore.Cars.Entity;
+using AppDomainCore.Users.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDomainCore.HW20.Users.Entity
+namespace AppDomainCore.Users.Entity
 {
     public class User
     {

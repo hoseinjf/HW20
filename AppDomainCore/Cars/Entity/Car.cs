@@ -1,11 +1,11 @@
-﻿using AppDomainCore.HW20.Users.Entity;
+﻿using AppDomainCore.Users.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDomainCore.HW20.Cars.Entity
+namespace AppDomainCore.Cars.Entity
 {
     public class Car
     {

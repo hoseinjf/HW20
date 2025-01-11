@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainService.HW20.Car
+namespace AppDataRepository.Cars
 {
-    public class CarService
+    public class CarRepository
     {
     }
 }

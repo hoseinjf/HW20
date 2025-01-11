@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDataRepository.HW20.Db
+namespace DomainAppService.User
 {
-    public class AppDbContext
+    public class UserAppService
     {
     }
 }

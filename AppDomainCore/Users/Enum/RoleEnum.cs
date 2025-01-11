@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainAppService.HW20.User
+namespace AppDomainCore.Users.Enum
 {
-    public class UserAppService
+    public enum RoleEnum
     {
+        None = 0,
+        User = 1,
+        Admin = 2,
     }
 }
