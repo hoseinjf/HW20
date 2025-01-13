@@ -1,4 +1,6 @@
-﻿using AppDomainCore.Users.Entity;
+﻿using AppDomainCore.Cars.Entity;
+using AppDomainCore.OldCars.Entity;
+using AppDomainCore.Users.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,5 +17,7 @@ namespace AppDataRepository.Db
 
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<OldCar> OldCars { get; set; }
+        public DbSet<Car> Cars { get; set; }
     }
 }
