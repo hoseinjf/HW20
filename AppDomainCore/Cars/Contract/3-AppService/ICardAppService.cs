@@ -1,4 +1,5 @@
 ﻿using AppDomainCore.Cars.Entity;
+using AppDomainCore.OldCars.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace AppDomainCore.HW20.Cars.Contract._3_AppService
 {
     public interface ICardAppService
     {
-        public Car Add(Car car);
+        public Car Add(Car car, OldCar? oldCars);
         public Car Get(int carId);
         public List<Car> GetAll();
     }

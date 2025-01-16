@@ -17,7 +17,7 @@ namespace AppDomainCore.Users.Entity
         public string Address { get; set; }
         public List<Car>? Cars { get; set; }
         public List<OldCar>? OldCars { get; set; }
-        public RoleEnum Role { get; set; } = RoleEnum.None;
-        public DateTime SetDate { get; set; } = DateTime.Now;
+        public RoleEnum Role { get; set; } = RoleEnum.User;
+
     }
 }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppDomainCore.Users.Enum
+namespace AppDomainCore.Cars.Enum
 {
-    public enum RoleEnum
+    public enum CompanyEnum
     {
-        User = 1,
-        Admin = 2,
+        irankhidro = 0,
+        saipa= 1,
     }
 }
