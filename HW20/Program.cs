@@ -1,4 +1,22 @@
+using AppDataRepository.Cars;
 using AppDataRepository.Db;
+using AppDataRepository.OldCars;
+using AppDataRepository.Users;
+using AppDomainCore.HW20.Cars.Contract._1_Repository;
+using AppDomainCore.HW20.Cars.Contract._2_Service;
+using AppDomainCore.HW20.Cars.Contract._3_AppService;
+using AppDomainCore.HW20.Users.Contract._1_Repository;
+using AppDomainCore.HW20.Users.Contract._2_Service;
+using AppDomainCore.HW20.Users.Contract._3_AppService;
+using AppDomainCore.OldCars.Contract._1_Repository;
+using AppDomainCore.OldCars.Contract._2_Service;
+using AppDomainCore.OldCars.Contract._3_AppService;
+using DomainAppService.Car;
+using DomainAppService.OldCars;
+using DomainAppService.User;
+using DomainService.Car;
+using DomainService.OldCars;
+using DomainService.User;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -10,7 +28,17 @@ builder.Services.AddControllersWithViews();
 var ConnectionString = builder.Configuration.GetConnectionString("sql");
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(ConnectionString));
 
+builder.Services.AddScoped<IUserAppService, UserAppService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+builder.Services.AddScoped<ICardAppService, CarAppService>();
+builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<ICarRepository, CarRepository>();
+
+builder.Services.AddScoped<IOldCarAppService, OldCarAppService>();
+builder.Services.AddScoped<IOldCarService, OldCarService>();
+builder.Services.AddScoped<IOldCarRepository, OldCarRepository>();
 
 var app = builder.Build();
 

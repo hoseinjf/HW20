@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AppDataRepository\AppDataRepository.csproj" />
+    <ProjectReference Include="..\DomainAppService\DomainAppService.csproj" />
   </ItemGroup>
 
 </Project>

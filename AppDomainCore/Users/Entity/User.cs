@@ -18,6 +18,6 @@ namespace AppDomainCore.Users.Entity
         public List<Car>? Cars { get; set; }
         public List<OldCar>? OldCars { get; set; }
         public RoleEnum Role { get; set; } = RoleEnum.None;
-        public DateTime SetDate { get; set; } = Convert.ToDateTime("2000/01/01");
+        public DateTime SetDate { get; set; } = DateTime.Now;
     }
 }
