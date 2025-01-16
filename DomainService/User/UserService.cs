@@ -15,5 +15,20 @@ namespace DomainService.User
         {
             _userRepository = userRepository;
         }
+
+        public AppDomainCore.Users.Entity.User Add(AppDomainCore.Users.Entity.User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppDomainCore.Users.Entity.User Get(int UseId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<AppDomainCore.Users.Entity.User> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

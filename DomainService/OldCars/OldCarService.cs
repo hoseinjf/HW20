@@ -1,5 +1,6 @@
 ﻿using AppDomainCore.OldCars.Contract._1_Repository;
 using AppDomainCore.OldCars.Contract._2_Service;
+using AppDomainCore.OldCars.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,21 @@ namespace DomainService.OldCars
         public OldCarService(IOldCarRepository carRepository)
         {
             _repository = carRepository;
+        }
+
+        public OldCar Add(OldCar car)
+        {
+            throw new NotImplementedException();
+        }
+
+        public OldCar Get(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<OldCar> GetAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

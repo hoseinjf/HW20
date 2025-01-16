@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppDomainCore.Cars.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace AppDomainCore.HW20.Cars.Contract._2_Service
 {
     public interface ICarService
     {
+        public Car Add(Car car);
+        public Car Get(int carId);
+        public List<Car> GetAll();
     }
 }

@@ -15,5 +15,20 @@ namespace DomainService.Car
         {
             _carRepository = carRepository;
         }
+
+        public AppDomainCore.Cars.Entity.Car Add(AppDomainCore.Cars.Entity.Car car)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppDomainCore.Cars.Entity.Car Get(int carId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<AppDomainCore.Cars.Entity.Car> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
