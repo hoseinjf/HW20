@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = "_layout";
+}
+
+
+
+<div>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form asp-action="Index">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-@TempData["AlertType"] alert-dismissible fade show" role="alert">
+                @TempData["Message"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <h3>فرم درخواست معاینه فنی</h3>
+        <input type="hidden" name="Id">
+        <input type="hidden" name="UserId">
+        <input type="hidden" name="SetDate">
+
+        <label name="Name" for="Name">نام خودرو </label>
+        <input type="text" name="Name" placeholder="Name" id="Name">
+        <br><br>
+
+
+        <label name="companyCar" for="companyCar"> شرکت </label>
+        <select name="companyCar">
+            <option value="">انتخاب کنید</option>
+            <option value="0">ایرانخودرو</option>
+            <option value="1"> سایپا</option>
+        </select>
+        <br><br>
+        @*         <label name="Company" for="Company"> شرکت </label>
+        <input type="text" name="Company" placeholder="Company" id="Company">
+        <br><br> *@
+        <label name="Pluk" for="Pluk"> پلاک </label>
+        <input type="text" name="Pluk" placeholder="Pluk" id="Pluk">
+        <br><br>
+        <br><br>
+        <label name="CreateYear" for="CreateYear"> سال تولید </label>
+        <input type="date" name="CreateYear" placeholder="CreateYear" id="CreateYear">
+        <br><br>
+
+
+        <br><br>
+        <label name="FirstName" for="Address">آدرس  </label>
+        <input type="text" name="Address" placeholder="Address" id="Address">
+        <br><br>
+        <label name="NationalCode" for="NationalCode">کدملی</label>
+        <input type="text" name="NationalCode" placeholder="NationalCode" id="NationalCode">
+        <br><br>
+        <label name="Phone" for="Phone">موبایل</label>
+        <input type="tel" name="Phone" placeholder="Phone" id="Phone">
+        <br><br>
+
+
+        @*  <label name="MembershipType" for="MembershipType">اشتراک کاربری</label>
+        <select name="membership">
+        <option value="">انتخاب کنید</option>
+        <option value="1">طلایی</option>
+        <option value="2">نقره ای</option>
+        <option value="3">برنزی</option>
+        </select>
+        <br><br> *@
+        @* <label name="Gender" for="Gender">جنسیت</label>
+        <select name="gender">
+        <option value="">انتخاب کنید</option>
+        <option value="0">مرد</option>
+        <option value="1">زن</option>
+        </select>
+        <br><br> *@
+
+
+
+
+
+
+        <input value="درخواست" class="btn btn-success" id="bin" name="Index" type="submit">
+        <br><br>
+    </form>
+</div>

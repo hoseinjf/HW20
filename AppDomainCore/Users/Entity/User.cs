@@ -11,7 +11,7 @@ namespace AppDomainCore.Users.Entity
 {
     public class User
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public string Phone { get; set; }
         public string NationalCode { get; set; }
         public string Address { get; set; }

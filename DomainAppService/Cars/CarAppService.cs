@@ -5,8 +5,10 @@ using AppDomainCore.HW20.Cars.Contract._2_Service;
 using AppDomainCore.HW20.Cars.Contract._3_AppService;
 using AppDomainCore.OldCars.Contract._2_Service;
 using AppDomainCore.OldCars.Entity;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,20 +19,26 @@ namespace DomainAppService.Cars
     {
         private readonly ICarService _cardService;
         private readonly IOldCarService _ldCarService;
-        public CarAppService(ICarService carService,IOldCarService oldCarService)
+        //private readonly IConfiguration _configuration;
+        public CarAppService(ICarService carService, IOldCarService oldCarService/*, IConfiguration configuration*/)
         {
             _cardService = carService;
             _ldCarService = oldCarService;
+            //_configuration = configuration;
         }
 
-        public Car Add(Car car,OldCar? oldCars)
+        public Car Add(Car car, OldCar? oldCars)
         {
-            if (car.CreateYear<=DateTime.Now.AddSeconds(5))
+            //int zoj = int.Parse(_configuration.GetSection("Limits:zoj").Value);
+            //int fard = int.Parse(_configuration.GetSection("Limits:fard").Value);
+
+            if (car.CreateYear > DateTime.Now.AddYears(-5))
             {
-                if ((DayOfWeek)WeekEnum.Saturday == car.SetDate.DayOfWeek ||
-                (DayOfWeek)WeekEnum.Monday == car.SetDate.DayOfWeek ||
-                (DayOfWeek)WeekEnum.Wednesday == car.SetDate.DayOfWeek)
+                if (WeekEnum.Saturday.ToString() == car.SetDate.Day.ToString() ||
+                WeekEnum.Monday.ToString() == car.SetDate.DayOfWeek.ToString() ||
+                WeekEnum.Wednesday.ToString() == car.SetDate.DayOfWeek.ToString())
                 {
+                    //if (car.SetDate)
                     if (car.Company == CompanyEnum.irankhidro)
                     {
                         return _cardService.Add(car);
@@ -40,9 +48,9 @@ namespace DomainAppService.Cars
                         throw new Exception("Your vehicle will not be accepted on this day");
                     }
                 }
-                else if ((DayOfWeek)WeekEnum.Sunday == car.SetDate.DayOfWeek ||
-                    (DayOfWeek)WeekEnum.Tuesday == car.SetDate.DayOfWeek ||
-                    (DayOfWeek)WeekEnum.Thursday == car.SetDate.DayOfWeek)
+                else if (WeekEnum.Sunday.ToString() == car.SetDate.DayOfWeek.ToString() ||
+                    WeekEnum.Tuesday.ToString() == car.SetDate.DayOfWeek.ToString() ||
+                    WeekEnum.Thursday.ToString() == car.SetDate.DayOfWeek.ToString())
                 {
                     if (car.Company == CompanyEnum.saipa)
                     {
@@ -54,13 +62,13 @@ namespace DomainAppService.Cars
                         throw new Exception("Your vehicle will not be accepted on this day");
                     }
                 }
-                else if ((DayOfWeek)WeekEnum.Friday == car.SetDate.DayOfWeek)
+                else if (WeekEnum.Friday.ToString() == car.SetDate.DayOfWeek.ToString())
                 {
                     throw new Exception("We do not accept applications on Fridays.");
                 }
                 else
                 {
-                    throw new Exception("The input given is not valid.");
+                    throw new Exception("Your vehicle will not be accepted on this day.");
                 }
             }
             else
@@ -70,7 +78,7 @@ namespace DomainAppService.Cars
                 oldCars.User = car.User;
                 oldCars.Company = car.Company;
                 oldCars.Pluk = car.Pluk;
-                oldCars.SetDate=car.SetDate;
+                oldCars.SetDate = car.SetDate;
                 oldCars.CreateYear = car.CreateYear;
                 _ldCarService.Add(oldCars);
                 throw new Exception("Your car is more than 5 years old.");
@@ -87,5 +95,262 @@ namespace DomainAppService.Cars
         {
             return _cardService.GetAll();
         }
+
+
+
+
+        //odl add
+        /*
+         * 
+         *         public Car Add(Car car, OldCar? oldCars)
+        {
+            int zoj = int.Parse(_configuration.GetSection("Limits:zoj").Value);
+            int fard = int.Parse(_configuration.GetSection("Limits:fard").Value);
+
+            if (car.CreateYear > DateTime.Now.AddYears(-5))
+            {
+                if (Convert.ToInt32(WeekEnum.Saturday) == Convert.ToInt32(car.SetDate.Day) ||
+                Convert.ToInt32(WeekEnum.Monday) == Convert.ToInt32(car.SetDate.Day) ||
+                Convert.ToInt32(WeekEnum.Wednesday) == Convert.ToInt32(car.SetDate.Day))
+                {
+                    if (car.DeyCount < zoj)
+                    {
+                        car.DeyCount++;
+                        if (car.DeyCount == 1)
+                        {
+                            car.DeyTime = DateTime.Now.AddDays(1);
+                            if (car.Company == CompanyEnum.irankhidro)
+                            {
+                                return _cardService.Add(car);
+                            }
+                            else
+                            {
+                                throw new Exception("Your vehicle will not be accepted on this day");
+                            }
+                        }
+                        if (car.Company == CompanyEnum.irankhidro)
+                        {
+                            return _cardService.Add(car);
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
+                    }
+                    if (car.DeyCount == zoj && car.DeyTime > DateTime.Now)
+                    {
+                        car.DeyCount = zoj;
+                        throw new Exception("ظرفیت پذیرش امروز تمام شد");
+                    }
+                    if (car.DeyCount == zoj && car.DeyTime <= DateTime.Now)
+                    {
+                        car.DeyCount = 0;
+                        if (car.Company == CompanyEnum.irankhidro)
+                        {
+                            return _cardService.Add(car);
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
+                    }
+                    else
+                    {
+                        if (car.Company == CompanyEnum.irankhidro)
+                        {
+                            return _cardService.Add(car);
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
+                    }
+                }
+                else if (Convert.ToInt32(WeekEnum.Sunday) == Convert.ToInt32(car.SetDate.Day) ||
+                    Convert.ToInt32(WeekEnum.Tuesday) == Convert.ToInt32(car.SetDate.Day) ||
+                    Convert.ToInt32(WeekEnum.Thursday) == Convert.ToInt32(car.SetDate.Day))
+                {
+                    if (car.DeyCount < fard)
+                    {
+                        car.DeyCount++;
+                        if (car.DeyCount == 1)
+                        {
+                            car.DeyTime = DateTime.Now.AddDays(1);
+                            if (car.Company == CompanyEnum.irankhidro)
+                            {
+                                return _cardService.Add(car);
+                            }
+                            else
+                            {
+                                throw new Exception("Your vehicle will not be accepted on this day");
+                            }
+                        }
+                        if (car.Company == CompanyEnum.saipa)
+                        {
+                            return _cardService.Add(car);
+
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
+                    }
+                    if (car.DeyCount == fard && car.DeyTime > DateTime.Now)
+                    {
+                        car.DeyCount = fard;
+                        throw new Exception("ظرفیت پذیرش امروز تمام شد");
+                    }
+                    if (car.DeyCount == fard && car.DeyTime <= DateTime.Now)
+                    {
+                        car.DeyCount = 0;
+                        if (car.Company == CompanyEnum.irankhidro)
+                        {
+                            return _cardService.Add(car);
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
+                    }
+                    else
+                    {
+                        if (car.Company == CompanyEnum.irankhidro)
+                        {
+                            return _cardService.Add(car);
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
+                    }
+                }
+                else if (Convert.ToInt32(WeekEnum.Friday) == Convert.ToInt32(car.SetDate.Day))
+                {
+                    throw new Exception("We do not accept applications on Fridays.");
+                }
+                else
+                {
+                    throw new Exception("Your vehicle will not be accepted on this day.");
+                }
+            }
+            else
+            {
+                oldCars.Id = car.Id;
+                oldCars.Name = car.Name;
+                oldCars.User = car.User;
+                oldCars.Company = car.Company;
+                oldCars.Pluk = car.Pluk;
+                oldCars.SetDate = car.SetDate;
+                oldCars.CreateYear = car.CreateYear;
+                _ldCarService.Add(oldCars);
+                throw new Exception("Your car is more than 5 years old.");
+            }
+
+        }
+         * 
+         */
+
+        //up cline GTP
+        /*
+         public Car Add(Car car, OldCar? oldCars)
+{
+    int zoj = int.Parse(_configuration.GetSection("Limits:zoj").Value);
+    int fard = int.Parse(_configuration.GetSection("Limits:fard").Value);
+
+    // بررسی سن خودرو
+    if (car.CreateYear <= DateTime.Now.AddYears(-5))
+    {
+        HandleOldCar(car, oldCars);
+        throw new Exception("Your car is more than 5 years old.");
+    }
+
+    // بررسی روز هفته
+    DayOfWeek day = car.SetDate.DayOfWeek;
+    bool isZojDay = day == DayOfWeek.Saturday || day == DayOfWeek.Monday || day == DayOfWeek.Wednesday;
+    bool isFardDay = day == DayOfWeek.Sunday || day == DayOfWeek.Tuesday || day == DayOfWeek.Thursday;
+
+    if (day == DayOfWeek.Friday)
+    {
+        throw new Exception("We do not accept applications on Fridays.");
+    }
+
+    if (isZojDay)
+    {
+        return ProcessCar(car, zoj, CompanyEnum.irankhidro);
+    }
+
+    if (isFardDay)
+    {
+        return ProcessCar(car, fard, CompanyEnum.saipa);
+    }
+
+    throw new Exception("Your vehicle will not be accepted on this day.");
+}
+
+// متد برای پردازش خودروهای جدید
+private Car ProcessCar(Car car, int limit, CompanyEnum requiredCompany)
+{
+    if (car.DeyCount < limit)
+    {
+        car.DeyCount++;
+        if (car.DeyCount == 1)
+        {
+            car.DeyTime = DateTime.Now.AddDays(1);
+        }
+
+        if (car.Company == requiredCompany)
+        {
+            return _cardService.Add(car);
+        }
+        else
+        {
+            throw new Exception("Your vehicle will not be accepted on this day");
+        }
+    }
+
+    if (car.DeyCount == limit)
+    {
+        if (car.DeyTime > DateTime.Now)
+        {
+            throw new Exception("ظرفیت پذیرش امروز تمام شد");
+        }
+
+        car.DeyCount = 0;
+        if (car.Company == requiredCompany)
+        {
+            return _cardService.Add(car);
+        }
+        else
+        {
+            throw new Exception("Your vehicle will not be accepted on this day");
+        }
+    }
+
+    throw new Exception("Unhandled condition in ProcessCar method.");
+}
+
+// متد برای مدیریت خودروهای قدیمی
+private void HandleOldCar(Car car, OldCar? oldCars)
+{
+    if (oldCars == null) throw new ArgumentNullException(nameof(oldCars));
+
+    oldCars.Id = car.Id;
+    oldCars.Name = car.Name;
+    oldCars.User = car.User;
+    oldCars.Company = car.Company;
+    oldCars.Pluk = car.Pluk;
+    oldCars.SetDate = car.SetDate;
+    oldCars.CreateYear = car.CreateYear;
+
+    _ldCarService.Add(oldCars);
+}
+
+         */
+
+
+
+
+
+
     }
 }

@@ -28,6 +28,8 @@ builder.Services.AddControllersWithViews();
 var ConnectionString = builder.Configuration.GetConnectionString("sql");
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(ConnectionString));
 
+//builder.Services.AddScoped<IConfiguration>();
+
 builder.Services.AddScoped<IUserAppService, UserAppService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();

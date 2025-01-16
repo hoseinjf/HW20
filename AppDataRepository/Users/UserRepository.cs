@@ -25,7 +25,7 @@ namespace AppDataRepository.Users
 
         public User Get(int UseId)
         {
-            var user = _db.Users.FirstOrDefault(x => x.Id == UseId);
+            var user = _db.Users.FirstOrDefault(x => x.UserId == UseId);
             if (user == null)
             {
                 throw new Exception("User is valid !!!");
