@@ -1,14 +1,15 @@
 ﻿using AppDomainCore.HW20.Users.Contract._1_Repository;
 using AppDomainCore.HW20.Users.Contract._2_Service;
+using AppDomainCore.Users.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainService.User
+namespace DomainService.Users
 {
-    public class UserService:IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         public UserService(IUserRepository userRepository)
@@ -16,19 +17,20 @@ namespace DomainService.User
             _userRepository = userRepository;
         }
 
-        public AppDomainCore.Users.Entity.User Add(AppDomainCore.Users.Entity.User user)
+        public User Add(User user)
         {
-            throw new NotImplementedException();
+            _userRepository.Add(user);
+            return user;
         }
 
-        public AppDomainCore.Users.Entity.User Get(int UseId)
+        public User Get(int UseId)
         {
-            throw new NotImplementedException();
+            return _userRepository.Get(UseId);
         }
 
-        public List<AppDomainCore.Users.Entity.User> GetAll()
+        public List<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAll();
         }
     }
 }

@@ -19,17 +19,18 @@ namespace DomainService.OldCars
 
         public OldCar Add(OldCar car)
         {
-            throw new NotImplementedException();
+            _repository.Add(car);
+            return car;
         }
 
         public OldCar Get(int carId)
         {
-            throw new NotImplementedException();
+            return _repository.Get(carId);
         }
 
         public List<OldCar> GetAll()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
     }
 }

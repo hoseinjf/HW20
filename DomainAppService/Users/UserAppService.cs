@@ -1,12 +1,13 @@
 ﻿using AppDomainCore.HW20.Users.Contract._2_Service;
 using AppDomainCore.HW20.Users.Contract._3_AppService;
+using AppDomainCore.Users.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainAppService.User
+namespace DomainAppService.Users
 {
     public class UserAppService:IUserAppService
     {
@@ -16,17 +17,17 @@ namespace DomainAppService.User
             _userService = userService;
         }
 
-        public AppDomainCore.Users.Entity.User Add(AppDomainCore.Users.Entity.User user)
+        public User Add(User user)
         {
             throw new NotImplementedException();
         }
 
-        public AppDomainCore.Users.Entity.User Get(int UseId)
+        public User Get(int UseId)
         {
             throw new NotImplementedException();
         }
 
-        public List<AppDomainCore.Users.Entity.User> GetAll()
+        public List<User> GetAll()
         {
             throw new NotImplementedException();
         }

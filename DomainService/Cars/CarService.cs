@@ -1,4 +1,5 @@
-﻿using AppDomainCore.HW20.Cars.Contract._1_Repository;
+﻿using AppDomainCore.Cars.Entity;
+using AppDomainCore.HW20.Cars.Contract._1_Repository;
 using AppDomainCore.HW20.Cars.Contract._2_Service;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainService.Car
+namespace DomainService.Cars
 {
     public class CarService:ICarService
     {
@@ -16,19 +17,20 @@ namespace DomainService.Car
             _carRepository = carRepository;
         }
 
-        public AppDomainCore.Cars.Entity.Car Add(AppDomainCore.Cars.Entity.Car car)
+        public Car Add(Car car)
         {
-            throw new NotImplementedException();
+            _carRepository.Add(car);
+            return car;
         }
 
-        public AppDomainCore.Cars.Entity.Car Get(int carId)
+        public Car Get(int carId)
         {
-            throw new NotImplementedException();
+            return _carRepository.Get(carId);
         }
 
-        public List<AppDomainCore.Cars.Entity.Car> GetAll()
+        public List<Car> GetAll()
         {
-            throw new NotImplementedException();
+            return _carRepository.GetAll();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using AppDomainCore.Cars.Entity;
 using AppDomainCore.HW20.Cars.Contract._2_Service;
 using AppDomainCore.HW20.Cars.Contract._3_AppService;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainAppService.Car
+namespace DomainAppService.Cars
 {
     public class CarAppService:ICardAppService
     {
@@ -17,17 +18,17 @@ namespace DomainAppService.Car
             _cardService = carService;
         }
 
-        public AppDomainCore.Cars.Entity.Car Add(AppDomainCore.Cars.Entity.Car car)
+        public Car Add(Car car)
         {
             throw new NotImplementedException();
         }
 
-        public AppDomainCore.Cars.Entity.Car Get(int carId)
+        public Car Get(int carId)
         {
             throw new NotImplementedException();
         }
 
-        public List<AppDomainCore.Cars.Entity.Car> GetAll()
+        public List<Car> GetAll()
         {
             throw new NotImplementedException();
         }
