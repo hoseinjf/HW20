@@ -1,6 +1,7 @@
 ﻿using AppDomainCore.HW20.Users.Contract._2_Service;
 using AppDomainCore.HW20.Users.Contract._3_AppService;
 using AppDomainCore.Users.Entity;
+using AppDomainCore.Users.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,11 @@ namespace DomainAppService.Users
         public List<User> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public bool Login(User user)
+        {
+            return _userService.Login(user);
         }
     }
 }

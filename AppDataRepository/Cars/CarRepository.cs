@@ -35,7 +35,7 @@ namespace AppDataRepository.Cars
 
         public List<Car> GetAll()
         {
-            return _db.Cars.ToList();
+            return _db.Cars.OrderBy(x=>x.SetDate).ToList();
         }
         public bool Check(string pluk)
         {

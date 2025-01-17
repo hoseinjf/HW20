@@ -1,0 +1,67 @@
+﻿@using AppDomainCore.Cars.Entity
+@{
+    Layout = "_layout";
+}
+@model List<Car>;
+
+@*
+        public int UserId { get; set; }
+        public string Phone { get; set; }
+        public string NationalCode { get; set; }
+        public string Address { get; set; }
+        public List<Car>? Cars { get; set; }
+        public List<OldCar>? OldCars { get; set; }
+        public RoleEnum Role { get; set; } = RoleEnum.User; *@
+
+@*      public int Id { get; set; }
+        public string Name { get; set; }
+        public CompanyEnum Company { get; set; }
+        public string Pluk { get; set; }
+        public DateTime CreateYear { get; set; }
+        public User User { get; set; }
+        public DateTime SetDate { get; set; } = DateTime.Now;
+        public int? DeyCount { get; set; }
+        public DateTime? DeyTime { get; set; } *@
+
+
+
+
+
+<table style="width:100%;height:100%;margin:50px; text-align:center;align-items:center;justify-content:center" class="table table-bordered table-responsive table-secondary table-hover">
+    <thead>
+        <tr>
+            <th>موبایل</th>
+            <th>کدملی </th>
+            <th>آدرس </th>
+            <th>نام خودرو </th>
+            <th>شرکت سازنده </th>
+            <th>پلاک</th>
+            <th>سال تولید </th>
+            <th>تاریخ ثبت درخواست  </th>
+            <th> عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.User.Phone</td>
+                <td>@item.User.NationalCode</td>
+                <td>@item.User.Address</td>
+                <td>@item.Name</td>
+                <td>@item.Company</td>
+                <td>@item.Pluk</td>
+                <td>@item.CreateYear</td>
+                <td>@item.SetDate</td>
+                <td>
+                    <br />
+                    <a type="submit" name="Id" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">رد کردن درخواست</a>
+                    <br />
+                    <br />
+                    <a type="submit" name="Id" class="btn btn-success" asp-action="Delete" asp-route-id="@item.Id">تایید درخواست</a>
+                    <br />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

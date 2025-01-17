@@ -32,5 +32,12 @@ namespace DomainService.Users
         {
             return _userRepository.GetAll();
         }
+
+        public bool Login(User user)
+        {
+            return _userRepository.Login(user);
+        }
+
+
     }
 }

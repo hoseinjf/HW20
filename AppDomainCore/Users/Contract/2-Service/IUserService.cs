@@ -12,5 +12,6 @@ namespace AppDomainCore.HW20.Users.Contract._2_Service
         public User Add(User user);
         public User Get(int UseId);
         public List<User> GetAll();
+        public bool Login(User user);
     }
 }

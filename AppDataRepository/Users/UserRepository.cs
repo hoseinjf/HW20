@@ -1,6 +1,7 @@
 ﻿using AppDataRepository.Db;
 using AppDomainCore.HW20.Users.Contract._1_Repository;
 using AppDomainCore.Users.Entity;
+using AppDomainCore.Users.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,17 @@ namespace AppDataRepository.Users
         public List<User> GetAll()
         {
             return _db.Users.ToList();
+        }
+        public bool Login(User user)
+        {
+            if (user.Role == RoleEnum.Admin)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
