@@ -34,19 +34,31 @@ namespace AppDataRepository.Users
             return user;
         }
 
+        public User GetByAdmin(string phone,string nationalCode)
+        {
+            var user = _db.Users.FirstOrDefault(x => x.Phone == phone && x.NationalCode == nationalCode);
+            if (user == null)
+            {
+                throw new Exception("User is valid !!!");
+            }
+            return user;
+        }
+
         public List<User> GetAll()
         {
             return _db.Users.ToList();
         }
-        public bool Login(User user)
+        public User Login(int id,User user)
         {
+            user = Get(id);
+
             if (user.Role == RoleEnum.Admin)
             {
-                return true;
+                return user;
             }
             else
             {
-                return false;
+                throw new Exception("شما مجاز به ورود نیستید");
             }
         }
     }

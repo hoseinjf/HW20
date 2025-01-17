@@ -2,27 +2,8 @@
 @{
     Layout = "_layout";
 }
+
 @model List<Car>;
-
-@*
-        public int UserId { get; set; }
-        public string Phone { get; set; }
-        public string NationalCode { get; set; }
-        public string Address { get; set; }
-        public List<Car>? Cars { get; set; }
-        public List<OldCar>? OldCars { get; set; }
-        public RoleEnum Role { get; set; } = RoleEnum.User; *@
-
-@*      public int Id { get; set; }
-        public string Name { get; set; }
-        public CompanyEnum Company { get; set; }
-        public string Pluk { get; set; }
-        public DateTime CreateYear { get; set; }
-        public User User { get; set; }
-        public DateTime SetDate { get; set; } = DateTime.Now;
-        public int? DeyCount { get; set; }
-        public DateTime? DeyTime { get; set; } *@
-
 
 
 
@@ -38,7 +19,8 @@
             <th>پلاک</th>
             <th>سال تولید </th>
             <th>تاریخ ثبت درخواست  </th>
-            <th> عملیات</th>
+            <th>وضعیت </th>
+
         </tr>
     </thead>
     <tbody>
@@ -54,13 +36,18 @@
                 <td>@item.CreateYear</td>
                 <td>@item.SetDate</td>
                 <td>
-                    <br />
-                    <a type="submit" name="Id" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">رد کردن درخواست</a>
-                    <br />
-                    <br />
-                    <a type="submit" name="Id" class="btn btn-success" asp-action="Delete" asp-route-id="@item.Id">تایید درخواست</a>
-                    <br />
+                    <form asp-action="SetStatus">
+                    <select class="form-control" name="statusEnum">
+                        <option class="form-control" value="">انتخاب کنید</option>
+                        <option class="form-control" value="0">در انتظار تایید</option>
+                        <option class="form-control" value="1">رد کردن</option>
+                        <option class="form-control" value="2">تایید</option>
+                    </select>
+                        <a type="submit" name="statusEnum" class="btn btn-success" asp-action="SetStatus" asp-route-id="@item.Id">ثبت </a>
+                    </form>
                 </td>
+
+                
             </tr>
         }
     </tbody>

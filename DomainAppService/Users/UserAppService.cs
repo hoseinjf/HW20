@@ -33,9 +33,16 @@ namespace DomainAppService.Users
             throw new NotImplementedException();
         }
 
-        public bool Login(User user)
+        public User Login(int id, User user)
         {
-            return _userService.Login(user);
+            return _userService.Login(id, user);
         }
+
+        public User GetByAdmin(string phone, string nationalCode)
+        {
+            return _userService.GetByAdmin(phone, nationalCode);
+        }
+
+
     }
 }

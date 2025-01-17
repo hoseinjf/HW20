@@ -105,7 +105,10 @@ namespace DomainAppService.Cars
         {
             return _cardService.Check(pluk);
         }
-
+        public Car CehngStatus(int id, StatusEnum statusEnum)
+        {
+            return _cardService.CehngStatus(id, statusEnum);
+        }
 
 
         //odl add

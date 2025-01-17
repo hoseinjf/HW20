@@ -33,10 +33,16 @@ namespace DomainService.Users
             return _userRepository.GetAll();
         }
 
-        public bool Login(User user)
+        public User Login(int id, User user)
         {
-            return _userRepository.Login(user);
+            return _userRepository.Login(id, user);
         }
+
+        public User GetByAdmin(string phone, string nationalCode)
+        {
+            return _userRepository.GetByAdmin(phone, nationalCode);
+        }
+
 
 
     }

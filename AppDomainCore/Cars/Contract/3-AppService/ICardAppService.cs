@@ -1,4 +1,5 @@
 ﻿using AppDomainCore.Cars.Entity;
+using AppDomainCore.Cars.Enum;
 using AppDomainCore.OldCars.Entity;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace AppDomainCore.HW20.Cars.Contract._3_AppService
         public Car Get(int carId);
         public List<Car> GetAll();
         public bool Check(string pluk);
+        public Car CehngStatus(int id, StatusEnum statusEnum);
     }
 }

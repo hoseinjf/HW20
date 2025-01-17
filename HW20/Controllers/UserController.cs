@@ -1,5 +1,8 @@
-﻿using AppDomainCore.HW20.Cars.Contract._3_AppService;
+﻿using AppDomainCore.Cars.Entity;
+using AppDomainCore.Cars.Enum;
+using AppDomainCore.HW20.Cars.Contract._3_AppService;
 using AppDomainCore.HW20.Users.Contract._3_AppService;
+using AppDomainCore.OldCars.Entity;
 using AppDomainCore.Users.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,19 +22,48 @@ namespace HW20.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(User user)
+        public IActionResult Index(string Phone,string NationalCode, StatusEnum statusEnum )
         {
-            var log = _userAppService.Login(user);
-            if (log==true)
+
+            try
             {
-                var all = _cardAppService.GetAll();
-                return View(all);
+                var user = _userAppService.GetByAdmin(Phone, NationalCode);
+                var log = _userAppService.Login(user.UserId, user);
+                if (log != null)
+                {
+                    var all = _cardAppService.GetAll();
+                    ViewBag.status = all;
+
+                    return View("Index1", all);
+                }
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index","Home");
+            catch (Exception ex)
+            {
+                TempData["Message"] = ex.Message;
+                TempData["AlertType"] = "danger";
+                return View("Index");
+            }
         }
-        public IActionResult Show()
+
+        //[HttpGet]
+        //public IActionResult SetStatus(int Id, StatusEnum statusEnum) 
+        //{
+
+        //}
+        //[HttpGet]
+        //public IActionResult SetStatus()
+        //{
+        //    return RedirectToAction("SetStatus");
+        //}
+
+
+        [HttpPost]
+        public IActionResult SetStatus(int Id,StatusEnum statusEnum)
         {
-            return View();
+            var status = _cardAppService.CehngStatus(Id,statusEnum);
+            return RedirectToAction("Index1");
         }
+
     }
 }

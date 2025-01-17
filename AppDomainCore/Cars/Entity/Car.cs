@@ -19,6 +19,7 @@ namespace AppDomainCore.Cars.Entity
         public DateTime SetDate { get; set; } = DateTime.Now;
         public int? DeyCount { get; set; }
         public DateTime? DeyTime { get; set; }
+        public StatusEnum? Status { get; set; } = StatusEnum.Waiting;
 
 
     }

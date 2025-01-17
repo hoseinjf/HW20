@@ -12,6 +12,7 @@ namespace AppDomainCore.HW20.Users.Contract._1_Repository
         public User Add(User user);
         public User Get(int UseId);
         public List<User> GetAll();
-        public bool Login(User user);
+        public User Login(int id, User user);
+        public User GetByAdmin(string phone, string nationalCode);
     }
 }

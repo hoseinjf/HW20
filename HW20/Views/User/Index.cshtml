@@ -3,14 +3,27 @@
 }
 
 <form asp-action="Index">
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-@TempData["AlertType"] alert-dismissible fade show" role="alert">
+            @TempData["Message"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <input type="hidden" name="Id">
+
+
     <h2 class="h2" style="text-align:center;align-items:center"> صفحه ورود مدیریت </h2>
     <div class="form-row">
         <div class="col">
             <input type="tel" name="Phone" class="form-control" placeholder="Phone">
-        </div>
+        </div><br /><br />
         <div class="col">
             <input type="text" name="NationalCode" class="form-control" placeholder="NationalCode">
         </div>
-        <input value="ورود" class="btn btn-success"  name="Index" type="submit">
+    </div><br /><br />
+        <input value="ورود" class="btn btn-success"  name="Index" type="submit" style="width:50%">
     </div>
 </form>

@@ -1,6 +1,9 @@
 ﻿using AppDataRepository.Db;
 using AppDomainCore.Cars.Entity;
+using AppDomainCore.Cars.Enum;
 using AppDomainCore.HW20.Cars.Contract._1_Repository;
+using AppDomainCore.HW20.Users.Contract._1_Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +15,11 @@ namespace AppDataRepository.Cars
     public class CarRepository : ICarRepository
     {
         private readonly AppDbContext _db;
-        public CarRepository(AppDbContext appDb)
+        //private readonly IUserRepository _userRepository;
+        public CarRepository(AppDbContext appDb/*,IUserRepository userRepository*/)
         {
             _db = appDb;
+            //_userRepository = userRepository;
         }
         public Car Add(Car car)
         {
@@ -35,7 +40,8 @@ namespace AppDataRepository.Cars
 
         public List<Car> GetAll()
         {
-            return _db.Cars.OrderBy(x=>x.SetDate).ToList();
+            //var u =_userRepository.GetAll();
+            return _db.Cars.OrderBy(x=>x.SetDate).Include(x=>x.User).ToList();
         }
         public bool Check(string pluk)
         {
@@ -50,5 +56,18 @@ namespace AppDataRepository.Cars
                 //return false;
             }
         }
+
+
+        public Car CehngStatus(int id,StatusEnum statusEnum)
+        {
+            var car = _db.Cars.FirstOrDefault(x=> x.Id == id);
+            car.Status = statusEnum;
+            _db.Update(car);
+            _db.SaveChanges();
+            return car;
+        }
+
+
+
     }
 }

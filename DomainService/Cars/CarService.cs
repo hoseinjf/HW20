@@ -1,4 +1,5 @@
 ﻿using AppDomainCore.Cars.Entity;
+using AppDomainCore.Cars.Enum;
 using AppDomainCore.HW20.Cars.Contract._1_Repository;
 using AppDomainCore.HW20.Cars.Contract._2_Service;
 using System;
@@ -36,6 +37,11 @@ namespace DomainService.Cars
         public bool Check(string pluk)
         {
             return _carRepository.Check(pluk);
+        }
+
+        public Car CehngStatus(int id, StatusEnum statusEnum)
+        {
+            return _carRepository.CehngStatus(id, statusEnum);
         }
 
     }
