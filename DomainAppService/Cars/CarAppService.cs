@@ -31,59 +31,65 @@ namespace DomainAppService.Cars
         {
             //int zoj = int.Parse(_configuration.GetSection("Limits:zoj").Value);
             //int fard = int.Parse(_configuration.GetSection("Limits:fard").Value);
-
-            if (car.CreateYear > DateTime.Now.AddYears(-5))
+            var pl = _cardService.Check(car.Pluk);
+            if (pl == true)
             {
-                if (WeekEnum.Saturday.ToString() == car.SetDate.Day.ToString() ||
-                WeekEnum.Monday.ToString() == car.SetDate.DayOfWeek.ToString() ||
-                WeekEnum.Wednesday.ToString() == car.SetDate.DayOfWeek.ToString())
+                if (car.CreateYear > DateTime.Now.AddYears(-5))
                 {
-                    //if (car.SetDate)
-                    if (car.Company == CompanyEnum.irankhidro)
+                    if (WeekEnum.Saturday.ToString() == car.SetDate.Day.ToString() ||
+                    WeekEnum.Monday.ToString() == car.SetDate.DayOfWeek.ToString() ||
+                    WeekEnum.Wednesday.ToString() == car.SetDate.DayOfWeek.ToString())
                     {
-                        return _cardService.Add(car);
+                        //if (car.SetDate)
+                        if (car.Company == CompanyEnum.irankhidro)
+                        {
+                            return _cardService.Add(car);
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
                     }
-                    else
+                    else if (WeekEnum.Sunday.ToString() == car.SetDate.DayOfWeek.ToString() ||
+                        WeekEnum.Tuesday.ToString() == car.SetDate.DayOfWeek.ToString() ||
+                        WeekEnum.Thursday.ToString() == car.SetDate.DayOfWeek.ToString())
                     {
-                        throw new Exception("Your vehicle will not be accepted on this day");
-                    }
-                }
-                else if (WeekEnum.Sunday.ToString() == car.SetDate.DayOfWeek.ToString() ||
-                    WeekEnum.Tuesday.ToString() == car.SetDate.DayOfWeek.ToString() ||
-                    WeekEnum.Thursday.ToString() == car.SetDate.DayOfWeek.ToString())
-                {
-                    if (car.Company == CompanyEnum.saipa)
-                    {
-                        return _cardService.Add(car);
+                        if (car.Company == CompanyEnum.saipa)
+                        {
+                            return _cardService.Add(car);
 
+                        }
+                        else
+                        {
+                            throw new Exception("Your vehicle will not be accepted on this day");
+                        }
+                    }
+                    else if (WeekEnum.Friday.ToString() == car.SetDate.DayOfWeek.ToString())
+                    {
+                        throw new Exception("We do not accept applications on Fridays.");
                     }
                     else
                     {
-                        throw new Exception("Your vehicle will not be accepted on this day");
+                        throw new Exception("Your vehicle will not be accepted on this day.");
                     }
-                }
-                else if (WeekEnum.Friday.ToString() == car.SetDate.DayOfWeek.ToString())
-                {
-                    throw new Exception("We do not accept applications on Fridays.");
                 }
                 else
                 {
-                    throw new Exception("Your vehicle will not be accepted on this day.");
+                    oldCars.Id = car.Id;
+                    oldCars.Name = car.Name;
+                    oldCars.User = car.User;
+                    oldCars.Company = car.Company;
+                    oldCars.Pluk = car.Pluk;
+                    oldCars.SetDate = car.SetDate;
+                    oldCars.CreateYear = car.CreateYear;
+                    _ldCarService.Add(oldCars);
+                    throw new Exception("Your car is more than 5 years old.");
                 }
             }
             else
             {
-                oldCars.Id = car.Id;
-                oldCars.Name = car.Name;
-                oldCars.User = car.User;
-                oldCars.Company = car.Company;
-                oldCars.Pluk = car.Pluk;
-                oldCars.SetDate = car.SetDate;
-                oldCars.CreateYear = car.CreateYear;
-                _ldCarService.Add(oldCars);
-                throw new Exception("Your car is more than 5 years old.");
+                throw new Exception("این خودو در یکسال گذشته درخواست معاینه ثبت شده دارد");
             }
-
         }
 
         public Car Get(int carId)
@@ -95,7 +101,10 @@ namespace DomainAppService.Cars
         {
             return _cardService.GetAll();
         }
-
+        public bool Check(string pluk)
+        {
+            return _cardService.Check(pluk);
+        }
 
 
 

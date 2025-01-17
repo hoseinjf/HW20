@@ -32,5 +32,11 @@ namespace DomainService.Cars
         {
             return _carRepository.GetAll();
         }
+
+        public bool Check(string pluk)
+        {
+            return _carRepository.Check(pluk);
+        }
+
     }
 }

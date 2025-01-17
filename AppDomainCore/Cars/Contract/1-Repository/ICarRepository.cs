@@ -12,5 +12,6 @@ namespace AppDomainCore.HW20.Cars.Contract._1_Repository
         public Car Add(Car car);
         public Car Get(int carId);
         public List<Car> GetAll();
+        public bool Check(string pluk);
     }
 }

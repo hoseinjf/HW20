@@ -26,7 +26,7 @@ namespace AppDataRepository.Cars
         public Car Get(int carId)
         {
             var car = _db.Cars.FirstOrDefault(x => x.Id == carId);
-            if (car == null) 
+            if (car == null)
             {
                 throw new Exception("car is valid !!!");
             }
@@ -36,6 +36,19 @@ namespace AppDataRepository.Cars
         public List<Car> GetAll()
         {
             return _db.Cars.ToList();
+        }
+        public bool Check(string pluk)
+        {
+            var car =_db.Cars.FirstOrDefault(x => x.Pluk==pluk && x.SetDate>DateTime.Now.AddYears(-1));
+            if (car ==null) 
+            {
+                return true;
+            }
+            else
+            {
+                throw new Exception("خودرو شما در یک سال گذشته یکبار درخواست معاینه داشته است");
+                //return false;
+            }
         }
     }
 }

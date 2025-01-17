@@ -13,5 +13,6 @@ namespace AppDomainCore.HW20.Cars.Contract._3_AppService
         public Car Add(Car car, OldCar? oldCars);
         public Car Get(int carId);
         public List<Car> GetAll();
+        public bool Check(string pluk);
     }
 }
