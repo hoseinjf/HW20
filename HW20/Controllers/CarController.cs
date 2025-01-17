@@ -38,7 +38,7 @@ namespace HW20.Controllers
                 TempData["AlertType"] = "danger";
                 return View("Index");
             }
-            return View();
+            return View("Index1");
         }
     }
 }
