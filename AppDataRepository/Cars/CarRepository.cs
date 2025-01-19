@@ -58,10 +58,18 @@ namespace AppDataRepository.Cars
         }
 
 
-        public Car CehngStatus(int id,StatusEnum statusEnum)
+        public Car CehngStatusOk(int id)
         {
             var car = _db.Cars.FirstOrDefault(x=> x.Id == id);
-            car.Status = statusEnum;
+            car.Status = StatusEnum.Approved;
+            _db.Update(car);
+            _db.SaveChanges();
+            return car;
+        }
+        public Car CehngStatusCancel(int id)
+        {
+            var car = _db.Cars.FirstOrDefault(x => x.Id == id);
+            car.Status = StatusEnum.Rejected;
             _db.Update(car);
             _db.SaveChanges();
             return car;

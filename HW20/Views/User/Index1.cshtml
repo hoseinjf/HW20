@@ -20,6 +20,7 @@
             <th>سال تولید </th>
             <th>تاریخ ثبت درخواست  </th>
             <th>وضعیت </th>
+            <th>عملیات </th>
 
         </tr>
     </thead>
@@ -35,8 +36,22 @@
                 <td>@item.Pluk</td>
                 <td>@item.CreateYear</td>
                 <td>@item.SetDate</td>
+                <td>@item.Status</td>
                 <td>
-                    <form asp-action="SetStatus">
+                    <a type="submit" class="btn btn-success" asp-controller="User"  asp-action="SetStatusOk" asp-route-id="@item.Id">ثبت </a>
+                    <a type="submit" class="btn btn-danger" asp-controller="User" asp-action="SetStatusCancel" asp-route-id="@item.Id">رد درخواست </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+@* <form asp-action="SetStatus">
                     <select class="form-control" name="statusEnum">
                         <option class="form-control" value="">انتخاب کنید</option>
                         <option class="form-control" value="0">در انتظار تایید</option>
@@ -44,11 +59,4 @@
                         <option class="form-control" value="2">تایید</option>
                     </select>
                         <a type="submit" name="statusEnum" class="btn btn-success" asp-action="SetStatus" asp-route-id="@item.Id">ثبت </a>
-                    </form>
-                </td>
-
-                
-            </tr>
-        }
-    </tbody>
-</table>
+                    </form> *@

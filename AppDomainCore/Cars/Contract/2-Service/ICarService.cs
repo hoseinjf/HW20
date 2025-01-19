@@ -14,6 +14,7 @@ namespace AppDomainCore.HW20.Cars.Contract._2_Service
         public Car Get(int carId);
         public List<Car> GetAll();
         public bool Check(string pluk);
-        public Car CehngStatus(int id, StatusEnum statusEnum);
+        public Car CehngStatusCancel(int id);
+        public Car CehngStatusOk(int id);
     }
 }

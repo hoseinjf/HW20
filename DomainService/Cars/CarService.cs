@@ -39,9 +39,13 @@ namespace DomainService.Cars
             return _carRepository.Check(pluk);
         }
 
-        public Car CehngStatus(int id, StatusEnum statusEnum)
+        public Car CehngStatusCancel(int id)
         {
-            return _carRepository.CehngStatus(id, statusEnum);
+            return _carRepository.CehngStatusCancel(id);
+        }
+        public Car CehngStatusOk(int id)
+        {
+            return _carRepository.CehngStatusOk(id);
         }
 
     }

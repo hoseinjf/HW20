@@ -46,23 +46,25 @@ namespace HW20.Controllers
             }
         }
 
-        //[HttpGet]
-        //public IActionResult SetStatus(int Id, StatusEnum statusEnum) 
-        //{
-
-        //}
-        //[HttpGet]
-        //public IActionResult SetStatus()
-        //{
-        //    return RedirectToAction("SetStatus");
-        //}
 
 
-        [HttpPost]
-        public IActionResult SetStatus(int Id,StatusEnum statusEnum)
+
+
+        public IActionResult SetStatusOk(int Id)
         {
-            var status = _cardAppService.CehngStatus(Id,statusEnum);
-            return RedirectToAction("Index1");
+            var status = _cardAppService.CehngStatusOk(Id);
+            var all = _cardAppService.GetAll();
+            ViewBag.status = all;
+
+            return View("Index1", all);
+        }
+        public IActionResult SetStatusCancel(int Id)
+        {
+            var status = _cardAppService.CehngStatusCancel(Id);
+            var all = _cardAppService.GetAll();
+            ViewBag.status = all;
+
+            return View("Index1", all);
         }
 
     }

@@ -105,9 +105,13 @@ namespace DomainAppService.Cars
         {
             return _cardService.Check(pluk);
         }
-        public Car CehngStatus(int id, StatusEnum statusEnum)
+        public Car CehngStatusCancel(int id)
         {
-            return _cardService.CehngStatus(id, statusEnum);
+            return _cardService.CehngStatusCancel(id);
+        }
+        public Car CehngStatusOk(int id)
+        {
+            return _cardService.CehngStatusOk(id);
         }
 
 
