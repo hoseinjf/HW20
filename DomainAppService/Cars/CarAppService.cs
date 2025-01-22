@@ -41,11 +41,11 @@ namespace DomainAppService.Cars
                     WeekEnum.Monday.ToString() == car.SetDate.DayOfWeek.ToString() ||
                     WeekEnum.Wednesday.ToString() == car.SetDate.DayOfWeek.ToString())
                     {
-                        if (car.DeyCount <= zoj)
+                        if (_cardService.SetCount(car,zoj)==true)
                         {
                             if (car.Company == CompanyEnum.irankhidro)
                             {
-                                car.DeyCount=car.DeyCount+1;
+                                //car.DeyCount=car.DeyCount+1;
                                 return _cardService.Add(car);
                             }
                             else
@@ -63,12 +63,11 @@ namespace DomainAppService.Cars
                         WeekEnum.Tuesday.ToString() == car.SetDate.DayOfWeek.ToString() ||
                         WeekEnum.Thursday.ToString() == car.SetDate.DayOfWeek.ToString())
                     {
-                        if (car.DeyCount <= zoj)
+                        if (_cardService.SetCount(car, zoj) == true)
                         {
                             if (car.Company == CompanyEnum.saipa)
                             {
                                 return _cardService.Add(car);
-
                             }
                             else
                             {
@@ -128,6 +127,12 @@ namespace DomainAppService.Cars
         public Car CehngStatusOk(int id)
         {
             return _cardService.CehngStatusOk(id);
+        }
+
+
+        public bool SetCount(Car car, int z)
+        {
+            return _cardService.SetCount(car, z);
         }
 
 

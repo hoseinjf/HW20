@@ -41,12 +41,12 @@ namespace AppDataRepository.Cars
         public List<Car> GetAll()
         {
             //var u =_userRepository.GetAll();
-            return _db.Cars.OrderBy(x=>x.SetDate).Include(x=>x.User).ToList();
+            return _db.Cars.OrderBy(x => x.SetDate).Include(x => x.User).ToList();
         }
         public bool Check(string pluk)
         {
-            var car =_db.Cars.FirstOrDefault(x => x.Pluk==pluk && x.SetDate>DateTime.Now.AddYears(-1));
-            if (car ==null) 
+            var car = _db.Cars.FirstOrDefault(x => x.Pluk == pluk && x.SetDate > DateTime.Now.AddYears(-1));
+            if (car == null)
             {
                 return true;
             }
@@ -60,7 +60,7 @@ namespace AppDataRepository.Cars
 
         public Car CehngStatusOk(int id)
         {
-            var car = _db.Cars.FirstOrDefault(x=> x.Id == id);
+            var car = _db.Cars.FirstOrDefault(x => x.Id == id);
             car.Status = StatusEnum.Approved;
             _db.Update(car);
             _db.SaveChanges();
@@ -75,7 +75,27 @@ namespace AppDataRepository.Cars
             return car;
         }
 
-
+        public bool SetCount(Car car,int z)
+        {
+            var car1 = GetAll().LastOrDefault(x => x.DeyCount <= z);
+            if (car1 == null) {  return false; }
+            if (car1.DeyCount < z)
+            {
+                car.DeyCount = car1.DeyCount+1;
+                _db.SaveChanges();
+                return true;
+            }
+            if (car1.DeyCount == z)
+            {
+                if(car1.SetDate<DateTime.Now.AddDays(-1))
+                {
+                    car.DeyCount = car.DeyCount + 1;
+                    _db.SaveChanges();
+                    return true;
+                }
+            }
+            return false;
+        }
 
     }
 }

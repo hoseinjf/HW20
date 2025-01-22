@@ -16,5 +16,6 @@ namespace AppDomainCore.HW20.Cars.Contract._1_Repository
         public bool Check(string pluk);
         public Car CehngStatusCancel(int id);
         public Car CehngStatusOk(int id);
+        public bool SetCount(Car car, int z);
     }
 }

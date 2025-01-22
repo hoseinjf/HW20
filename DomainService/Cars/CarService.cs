@@ -48,5 +48,11 @@ namespace DomainService.Cars
             return _carRepository.CehngStatusOk(id);
         }
 
+        public bool SetCount(Car car, int z)
+        {
+            return _carRepository.SetCount(car,z);
+        }
+
+
     }
 }
