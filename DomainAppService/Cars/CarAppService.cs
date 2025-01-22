@@ -1,6 +1,7 @@
 ﻿
 using AppDomainCore.Cars.Entity;
 using AppDomainCore.Cars.Enum;
+using AppDomainCore.Configs;
 using AppDomainCore.HW20.Cars.Contract._2_Service;
 using AppDomainCore.HW20.Cars.Contract._3_AppService;
 using AppDomainCore.OldCars.Contract._2_Service;
@@ -19,18 +20,18 @@ namespace DomainAppService.Cars
     {
         private readonly ICarService _cardService;
         private readonly IOldCarService _ldCarService;
-        //private readonly IConfiguration _configuration;
-        public CarAppService(ICarService carService, IOldCarService oldCarService/*, IConfiguration configuration*/)
+        private readonly Limits _limits;
+        public CarAppService(ICarService carService, IOldCarService oldCarService, Limits limits)
         {
             _cardService = carService;
             _ldCarService = oldCarService;
-            //_configuration = configuration;
+            _limits = limits;
         }
 
         public Car Add(Car car, OldCar? oldCars)
         {
-            //int zoj = int.Parse(_configuration.GetSection("Limits:zoj").Value);
-            //int fard = int.Parse(_configuration.GetSection("Limits:fard").Value);
+            int zoj = _limits.Zoj;
+            int fard = _limits.Fard;
             var pl = _cardService.Check(car.Pluk);
             if (pl == true)
             {
@@ -40,28 +41,43 @@ namespace DomainAppService.Cars
                     WeekEnum.Monday.ToString() == car.SetDate.DayOfWeek.ToString() ||
                     WeekEnum.Wednesday.ToString() == car.SetDate.DayOfWeek.ToString())
                     {
-                        //if (car.SetDate)
-                        if (car.Company == CompanyEnum.irankhidro)
+                        if (car.DeyCount <= zoj)
                         {
-                            return _cardService.Add(car);
+                            if (car.Company == CompanyEnum.irankhidro)
+                            {
+                                car.DeyCount=car.DeyCount+1;
+                                return _cardService.Add(car);
+                            }
+                            else
+                            {
+                                throw new Exception("Your vehicle will not be accepted on this day");
+                            }
                         }
                         else
                         {
-                            throw new Exception("Your vehicle will not be accepted on this day");
+                            throw new Exception("محدودیت پذیرش امروز به پایان رسیده است");
                         }
+
                     }
                     else if (WeekEnum.Sunday.ToString() == car.SetDate.DayOfWeek.ToString() ||
                         WeekEnum.Tuesday.ToString() == car.SetDate.DayOfWeek.ToString() ||
                         WeekEnum.Thursday.ToString() == car.SetDate.DayOfWeek.ToString())
                     {
-                        if (car.Company == CompanyEnum.saipa)
+                        if (car.DeyCount <= zoj)
                         {
-                            return _cardService.Add(car);
+                            if (car.Company == CompanyEnum.saipa)
+                            {
+                                return _cardService.Add(car);
 
+                            }
+                            else
+                            {
+                                throw new Exception("Your vehicle will not be accepted on this day");
+                            }
                         }
                         else
                         {
-                            throw new Exception("Your vehicle will not be accepted on this day");
+                            throw new Exception("محدودیت پذیرش امروز به پایان رسیده است");
                         }
                     }
                     else if (WeekEnum.Friday.ToString() == car.SetDate.DayOfWeek.ToString())

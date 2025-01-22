@@ -19,6 +19,7 @@ using DomainService.OldCars;
 using DomainService.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
+using AppDomainCore.Configs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,8 @@ builder.Services.AddControllersWithViews();
 var ConnectionString = builder.Configuration.GetConnectionString("sql");
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(ConnectionString));
 
+var limit = builder.Configuration.GetSection("Limits").Get<Limits>();
+builder.Services.AddSingleton(limit);
 //builder.Services.AddScoped<IConfiguration>();
 
 builder.Services.AddScoped<IUserAppService, UserAppService>();
