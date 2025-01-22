@@ -89,7 +89,7 @@ namespace AppDataRepository.Cars
             {
                 if(car1.SetDate<DateTime.Now.AddDays(-1))
                 {
-                    car.DeyCount = car.DeyCount + 1;
+                    car.DeyCount = car.DeyCount + 1; 
                     _db.SaveChanges();
                     return true;
                 }
