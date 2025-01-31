@@ -16,7 +16,7 @@ namespace AppDomainCore.Cars.Entity
         public string Pluk { get; set; }
         public DateTime CreateYear { get; set; }
         public User User { get; set; }
-        public DateTime SetDate { get; set; } = DateTime.Now;
+        public DateTime SetDate { get; set; } = DateTime.Now.AddDays(-2);
         public int? DeyCount { get; set; } = 0;
         public DateTime? DeyTime { get; set; }
         public StatusEnum? Status { get; set; } = StatusEnum.Waiting;

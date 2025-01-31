@@ -14,5 +14,6 @@ namespace AppDomainCore.Configs
         }
         public int Zoj { get; set; }
         public int Fard { get; set; }
+        public string ApiKey { get; set; }
     }
 }

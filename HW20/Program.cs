@@ -31,7 +31,6 @@ builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Connec
 
 var limit = builder.Configuration.GetSection("Limits").Get<Limits>();
 builder.Services.AddSingleton(limit);
-//builder.Services.AddScoped<IConfiguration>();
 
 builder.Services.AddScoped<IUserAppService, UserAppService>();
 builder.Services.AddScoped<IUserService, UserService>();

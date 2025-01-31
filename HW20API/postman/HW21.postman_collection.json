@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "026f3074-e9fb-4c59-ad0f-d0f0940f6e01",
+		"name": "HW21",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41706497"
+	},
+	"item": [
+		{
+			"name": "getAll",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "06c903f3-a817-4441-a414-b7a8329e1765",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7093/api/CompanyCars",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7093",
+					"path": [
+						"api",
+						"CompanyCars"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "06c903f3-a817-4441-a414-b7a8329e1765",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7093/api/CompanyCars/get?id=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7093",
+					"path": [
+						"api",
+						"CompanyCars",
+						"get"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "06c903f3-a817-4441-a414-b7a8329e1765",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"dena\",\r\n    \"company\": 0,\r\n    \"createYear\": \"2021-01-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7093/api/CompanyCars/added",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7093",
+					"path": [
+						"api",
+						"CompanyCars",
+						"added"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "06c903f3-a817-4441-a414-b7a8329e1765",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"tara\",\r\n    \"company\": 0,\r\n    \"createYear\": \"2022-01-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7093/api/CompanyCars/update",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7093",
+					"path": [
+						"api",
+						"CompanyCars",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "06c903f3-a817-4441-a414-b7a8329e1765",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7093/api/CompanyCars/delete?id=3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7093",
+					"path": [
+						"api",
+						"CompanyCars",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

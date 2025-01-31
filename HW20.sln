@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW20", "HW20\HW20.csproj", "{1B6F40F7-A7C4-405A-B5A9-5DB8365CE885}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainService", "DomainService\DomainService.csproj", "{794A6C6F-48ED-42F2-A330-08EF3C429B3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDataRepository", "AppDataRepository\AppDataRepository.csproj", "{D5EDCC33-0443-4BF3-A7B4-D5E43C344B48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW20API", "HW20API\HW20API.csproj", "{9D90DDC2-FFB7-46BA-BE80-DCF2E2AFC28C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{D5EDCC33-0443-4BF3-A7B4-D5E43C344B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5EDCC33-0443-4BF3-A7B4-D5E43C344B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5EDCC33-0443-4BF3-A7B4-D5E43C344B48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D90DDC2-FFB7-46BA-BE80-DCF2E2AFC28C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D90DDC2-FFB7-46BA-BE80-DCF2E2AFC28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D90DDC2-FFB7-46BA-BE80-DCF2E2AFC28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D90DDC2-FFB7-46BA-BE80-DCF2E2AFC28C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{4B2E1D98-4036-49FE-91D9-F8B1C1D8904D} = {8F84C8BA-D62C-4546-8904-E1247350EF70}
 		{794A6C6F-48ED-42F2-A330-08EF3C429B3C} = {8F84C8BA-D62C-4546-8904-E1247350EF70}
 		{D5EDCC33-0443-4BF3-A7B4-D5E43C344B48} = {B4032358-4DD2-408C-8F5A-9ABC134BD475}
+		{9D90DDC2-FFB7-46BA-BE80-DCF2E2AFC28C} = {AA46687C-BB11-4E33-BEC2-1C914CB84C88}
 	EndGlobalSection
 EndGlobal
